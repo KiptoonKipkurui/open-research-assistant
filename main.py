@@ -17,8 +17,8 @@ from io import BytesIO
 from PyPDF2 import PdfReader
 from dotenv import find_dotenv, load_dotenv
 from hashlib import md5
-from llm import LLMSource, LLmResponse, setup_dbqa
-from db import build_db
+from inference import LLMSource, LLmResponse, setup_dbqa
+from database import build_db
 # Import config vars
 with open('config/config.yml', 'r', encoding='utf8') as ymlfile:
     cfg = box.Box(yaml.safe_load(ymlfile))
