@@ -6,5 +6,6 @@ DATA_PATH: 'data/'
 DB_FAISS_PATH: 'vectorstore/db_faiss'
 MODEL_TYPE: 'llama'
 MODEL_BIN_PATH: 'models/llama-2-7b-chat.ggmlv3.q4_0.bin'
+MODEL_URL: 'https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/blob/main/llama-2-7b-chat.ggmlv3.q4_0.bin'
 MAX_NEW_TOKENS: 256
 TEMPERATURE: 0.01
