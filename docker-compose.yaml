@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+    networks:
+    - redis_network
+
+  
+  webserver:
+    image: open-research-assistant
+    build: .
+    ports:
+    - "80:80"
+    networks:
+    - redis_network
+    depends_on:
+    - redis
+    volumes:
+      - ./models:/code/models
+    
+    deploy:
+      resources:        
+        reservations:
+          cpus: '8'
+          memory: 8120M
+
+networks:
+    redis_network:
