@@ -3,7 +3,7 @@ import box
 import os
 from langchain.llms import CTransformers
 
-from llm import build_llm,set_qa_prompt,setup_dbqa
+from .llm import build_llm,set_qa_prompt,setup_dbqa
 class TestLLMs(unittest.TestCase):
     def test_build_llm(self):
         cfg=box.box_from_file("./config/config.yml","yaml")
