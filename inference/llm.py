@@ -1,6 +1,6 @@
 from langchain.llms import CTransformers
 from dotenv import find_dotenv, load_dotenv
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
