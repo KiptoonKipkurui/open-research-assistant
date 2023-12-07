@@ -1,19 +1,19 @@
-name: Static Analysis
+name: Static Analysis Pysa
 
 on: [push]
 
   
-  
 jobs:
-    pysa:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v4
+  pysa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-        - name: Run Pysa Action
-          uses: facebook/pysa-action
-          with:
-            repo-directory: './'
-            requirements-path: 'requirements.txt'
-            infer-types: true
-            include-default-sapp-filters: true
+      - name: Run Pysa Action
+        uses: facebook/pysa-action
+        with:
+          repo-directory: './'
+          requirements-path: 'requirements.txt'
+          infer-types: true
+          include-default-sapp-filters: true
+          sapp-filters-directory: path/to/custom-filters
