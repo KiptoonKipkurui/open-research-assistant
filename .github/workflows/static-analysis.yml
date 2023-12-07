@@ -1,15 +1,15 @@
-on:
-    push:      
-    pull_request:
+name: Static Analysis
+
+on: [push]
+
   
-  name: Pysa
   
-  jobs:
+jobs:
     pysa:
-      runs-on: ubuntu-latest
-      steps:
+        runs-on: ubuntu-latest
+        steps:
         - uses: actions/checkout@v4
-  
+
         - name: Run Pysa Action
           uses: facebook/pysa-action
           with:
