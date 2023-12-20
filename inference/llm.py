@@ -22,15 +22,15 @@ Helpful answer:
 """
 
 
-def build_llm(cfg: box.Box):
+def build_llm(config: box.Box):
     """
     Builds an LLM given the configuration
     """
     # Local CTransformers model
     llm = CTransformers(
-        model=cfg.MODEL_BIN_PATH,
-        model_type=cfg.MODEL_TYPE,
-        config={"max_new_tokens": cfg.MAX_NEW_TOKENS, "temperature": cfg.TEMPERATURE},
+        model=config.MODEL_BIN_PATH,
+        model_type=config.MODEL_TYPE,
+        config={"max_new_tokens": config.MAX_NEW_TOKENS, "temperature": config.TEMPERATURE},
     )
 
     return llm
@@ -46,7 +46,7 @@ def set_qa_prompt():
     return prompt
 
 
-def build_retrieval_qa(cfg: box.Box, llm, prompt, vectordb):
+def build_retrieval_qa(config: box.Box, llm, prompt, vectordb):
 
     """
     Sets up the build and retrival QA chain
@@ -54,14 +54,14 @@ def build_retrieval_qa(cfg: box.Box, llm, prompt, vectordb):
     dbqa = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
-        retriever=vectordb.as_retriever(search_kwargs={"k": cfg.VECTOR_COUNT}),
-        return_source_documents=cfg.RETURN_SOURCE_DOCUMENTS,
+        retriever=vectordb.as_retriever(search_kwargs={"k": config.VECTOR_COUNT}),
+        return_source_documents=config.RETURN_SOURCE_DOCUMENTS,
         chain_type_kwargs={"prompt": prompt},
     )
     return dbqa
 
 
-def setup_dbqa(cfg: box.Box):
+def setup_dbqa(config: box.Box,llm=None):
     """
     Sets the the whole inference pipeline
     """
@@ -69,10 +69,12 @@ def setup_dbqa(cfg: box.Box):
         model_name="sentence-transformers/all-MiniLM-L6-v2",
         model_kwargs={"device": "cpu"},
     )
-    vectordb = FAISS.load_local(cfg.DB_FAISS_PATH, embeddings)
-    llm = build_llm(cfg=cfg)
+    vectordb = FAISS.load_local(config.DB_FAISS_PATH, embeddings)
+
+    if not llm:
+        llm = build_llm(config=config)
     qa_prompt = set_qa_prompt()
-    dbqa = build_retrieval_qa(cfg, llm, qa_prompt, vectordb)
+    dbqa = build_retrieval_qa(config, llm, qa_prompt, vectordb)
 
     return dbqa
 

@@ -10,14 +10,14 @@ from langchain.embeddings import HuggingFaceEmbeddings
 
 
 # Build vector database
-def build_db(cfg: box.Box):
+def build_db(config: box.Box):
     """
     build the FAISS database 
     """
-    loader = DirectoryLoader(cfg.DATA_PATH, glob="*.pdf", loader_cls=PyPDFLoader)
+    loader = DirectoryLoader(config.DATA_PATH, glob="*.pdf", loader_cls=PyPDFLoader)
     documents = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=cfg.CHUNK_SIZE, chunk_overlap=cfg.CHUNK_OVERLAP
+        chunk_size=config.CHUNK_SIZE, chunk_overlap=config.CHUNK_OVERLAP
     )
     texts = text_splitter.split_documents(documents)
 
@@ -27,7 +27,7 @@ def build_db(cfg: box.Box):
     )
 
     vectorstore = FAISS.from_documents(texts, embeddings)
-    vectorstore.save_local(cfg.DB_FAISS_PATH)
+    vectorstore.save_local(config.DB_FAISS_PATH)
 
 if __name__ == "__main__":
     cfg = box.box_from_file("./config/config.yml", "yaml")
