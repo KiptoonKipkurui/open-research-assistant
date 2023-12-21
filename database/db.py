@@ -3,10 +3,10 @@ Database module providing functionality to vectorize
 Documents and perform similarity searches
 """
 import box
-from langchain.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.vectorstores import FAISS
 
 
 # Build vector database

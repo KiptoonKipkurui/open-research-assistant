@@ -3,7 +3,9 @@ Database TEST module
 """
 import os
 import unittest
+
 import box
+
 from database.db import build_db
 
 

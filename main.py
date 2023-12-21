@@ -1,22 +1,24 @@
 """
 MAIN module provides an entry point into the application
 """
+import os
 import timeit
 from hashlib import md5
-import os
+
 import box
+import redis
 import uvicorn
 import wget
-import redis
 import yaml
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
 from dotenv import find_dotenv, load_dotenv
-from inference import LLMSource, LLmResponse, setup_dbqa
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
 from database import build_db
+from inference import LLmResponse, LLMSource, setup_dbqa
 
 # Import config vars
 with open("config/config.yml", "r", encoding="utf8") as ymlfile:
