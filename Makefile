@@ -92,3 +92,8 @@ clean:
 	rm -f .coverage
 	rm -f .coverage.*
 	rm -rf build
+
+.PHONY: run
+# Sets up the virtual environment, installs the dependencies and runs the project
+run: venv 
+	uvicorn main:app 
