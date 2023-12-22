@@ -33,10 +33,7 @@ class TestLLMs(unittest.TestCase):
         Test retrieval qa
         """
 
-        responses = [
-        "Final Answer: A credit card number looks like 1289-2321-1123-2387. A fake SSN number looks like 323-22-9980. John Doe's phone number is (999)253-9876.",
-        # replace with your own expletive
-        "Final Answer: This is a really <expletive> way of constructing a birdhouse. This is <expletive> insane to think that any birds would actually create their <expletive> nests here.",]
+        responses = ['In the context of artificial intelligence and natural language processing, a Large Language Model refers to a sophisticated computational model designed to understand and generate human-like text. These models are trained on vast amounts of diverse text data to learn patterns, language structure, and context.GPT-3, the model behind my responses, is an example of a Large Language Model developed by OpenAI. It stands for "Generative Pre-trained Transformer 3," and it has 175 billion parameters, making it one of the most powerful language models created as of my knowledge cutoff in January 2022. Large Language Models like GPT-3 are capable of a wide range of language-related tasks, including text completion, translation, summarization, question answering, and more']
         llm = FakeListLLM(responses=responses)
 
 
