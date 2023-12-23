@@ -35,11 +35,18 @@ The model can be downloaded from the following endpoint
 
  Once downloaded, the model should be placed in the [models](./models/) directory. This model can then be used for reference
 
+ The application also requires a running redis instance. Redis installation instructions can be found [here](https://redis.io/docs/install/install-redis/)
+
+ To start the redis server the following command can be applied
+ ```sh
+ redis-server &
+ ```
+
  ### Installation
  Open-Research assistant has several options for installation as listed below
-- Makefile
-- Manual
-- Docker Compose
+- [Makefile](#makefile)
+- [Manual](#manual-installation)
+- [Docker Compose](#docker-compose)
 
 No matter the installation method, the open research assistant would run at `localhost:8000` so any processes running at this port should be stopped before running this project.
 #### Makefile
