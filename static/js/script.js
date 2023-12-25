@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   // This file contains the JavaScript code for the web app
 
+ 
 const input = document.querySelector("input[type='file']");
 var uploadBtn = document.querySelector(".upload-btn");
 const viewer = document.querySelector("#pdf-viewer");
@@ -11,7 +12,7 @@ const p = document.querySelector("p");
 const up = document.querySelector("#up");
 const y = document.querySelector("#url");
 const send = document.querySelector("#send");
-
+const loadTest=document.querySelector("#load-data");
 
 send.addEventListener("click", function(event) {
   event.preventDefault();
@@ -207,4 +208,59 @@ input.addEventListener("change", async function() {
   console.error(error);
   });
 });
+
+loadTest.addEventListener("click", function(event) {
+  // event.preventDefault();
+  url='https://raft.github.io/raft.pdf'
+    fetch(url)
+    .then(response => response.blob())
+    .then(pdfBlob => {
+        console.log(pdfBlob);
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        pdfjsLib.getDocument(pdfUrl).promise.then(pdfDoc => {
+            viewer.src = pdfUrl;
+            uploadBtn.style.display = "none";
+            form.style.display = "none";
+            form.style.marginTop = "0px";
+            p.style.display = "none";
+            up.style.display = "none";
+            container.style.display = "flex";
+            viewer.style.display = "block";
+        });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    var loading = document.createElement("p");
+    loading.style.color = "lightgray";
+    loading.style.fontSize = "14px";
+    loading.innerHTML = "Calculating embeddings...";
+    chat.appendChild(loading);
+
+    loadTest.style.display = "none";
+    loadTest.style.marginTop = "0px";
+    loadTest.style.visibility = 'hidden';
+    // Make a POST request to the server 'myserver/download-pdf' with the URL
+    fetch('/download_pdf', {
+      method: 'POST',
+      body: JSON.stringify({'url': url}),
+      headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      }
+      })
+      .then(response => response.json())
+      // Append the reply to #chat as a simple paragraph without any styling
+      .then(data => {
+        chat.removeChild(loading);
+        window.key = data.key;
+      })
+      .catch(error => {
+        uploadBtn.innerHTML = "Error: Request to server failed. Please try again. Check the URL if there is https:// at the beginning. If not, add it.";
+        x.innerHTML = "Error: Request to server failed. Please try again. Check the URL if there is https:// at the beginning. If not, add it.";
+        console.error(error);
+      });
+})
 });
