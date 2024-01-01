@@ -3,23 +3,25 @@
   <head>
     <script src="static/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.3.122/build/pdf.min.js"></script>
-    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
   </head>
   <body>
-
+      <div class="container-box">
     <form id='url' style="margin-top: 320px; margin-bottom: 20px; width: 100%; text-align: center;">
         <input type="text" name="pdf-url" placeholder="Enter URL" style="color: lightgray; padding: 10px; border: none; background-color: black; font: 1.2em Roboto; font-style: italic; width: 100%; text-align: center">
     </form>
 
-    <p style="color: white; margin: 10px; /* padding: 10px; */ /* border-radius: 10px; */ /* background-color: grey; */ width: fit-content; /* max-width: 80%; */ text-align: start; overflow-wrap: break-word; /* font-style: normal; */ font-variant-caps: normal; /* font-weight: normal; */ /* font-stretch: normal; */ /* font-size: 1.2em; */ line-height: normal; font-family: Roboto;">or</p>
+    <p style="color: rgb(255, 255, 255); margin: 10px; margin-left: 140px; font-size: 1.2em; /* padding: 10px; font-size: 2.2em; */ /* border-radius: 10px; */ /* background-color: grey; */ width: fit-content; /* max-width: 80%; */ text-align: start; overflow-wrap: break-word; /* font-style: normal; */ font-variant-caps: normal; /* font-weight: normal; */ /* font-stretch: normal; */ /* font-size: 1.2em; */ line-height: normal; font-family: Roboto;">or</p>
 
-    <form id="up" style="margin-top: 50px; margin-left: 15px;" enctype="multipart/form-data">
-      <label for="file-input" class="upload-btn">Upload PDF</label>
+    <form id="up" style="margin-top: 30px; margin-left: 15px; text-align: center; justify-content: center;" enctype="multipart/form-data">
+      <label for="file-input" class="upload-btn" style="text-align: center; justify-content: center; font: 1.2em Roboto;">Upload PDF</label>
       <input type="file" accept=".pdf" id="file-input"/>
     </form>
     
     <!-- <p style="color: white; margin: 10px; /* padding: 10px; */ /* border-radius: 10px; */ /* background-color: grey; */ width: fit-content; /* max-width: 80%; */ text-align: start; overflow-wrap: break-word; /* font-style: normal; */ font-variant-caps: normal; /* font-weight: normal; */ /* font-stretch: normal; */ /* font-size: 1.2em; */ line-height: normal; font-family: Roboto;">or</p>-->
-    <button id="load-data">Load Test Data</button> 
+    <button id="load-data" class="load-data" style="color: white; padding: 9px; border: solid white; margin-top: 15px; margin-left: 13px; margin-right: 15px; background-color: black; font: 1.2em Roboto; width: 95%; text-align: center; padding: 10px 20px; border-radius: 10px;">Load Test Data</button> 
+    </div>
+    <button id="refreshbutton" style="display: none; margin-left: 250px; margin: 0; padding: 0; position: absolute; top: 10px; right: 10px; font-size: 20px; background-color: transparent; border: none; color: white; outline: none;">X</button>
     <!-- <button type="button" onClick="window.location.reload();">Close</button> -->
     <div id="container">
         <iframe id="pdf-viewer" class="pdf-viewer" style="border-width: 0"></iframe> 
@@ -35,6 +37,6 @@
             </form>
         </div>          
     </div>
-    
   </body>
+
 </html>
