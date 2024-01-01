@@ -22,6 +22,8 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     display: flex;
+    text-align: center;
+    margin-right: 5px;
 }
 
 input[type="file"] {
@@ -53,6 +55,10 @@ input[type="text"] {
 #chat {
     width: 100%;
 }
+#up{
+    justify-content: center;
+    text-align: center;
+}
 
 #chat p {
     color: rgb(246, 243, 243);
@@ -66,4 +72,12 @@ input[type="text"] {
     font-size: 18px;
     font-weight: lighter;
   }
-  
+.load-data{
+    color: white;
+    padding: 10px;
+    border: none;
+    background-color: black;
+    font: 1.2em Roboto;
+    width: 120%;
+    text-align: center;
+}

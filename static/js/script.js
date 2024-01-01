@@ -136,6 +136,9 @@ y.addEventListener("submit", function(event) {
     loading.style.fontSize = "14px";
     loading.innerHTML = "Calculating embeddings...";
     chat.appendChild(loading);
+    loadTest.style.display = "none";
+    loadTest.style.marginTop = "0px";
+    loadTest.style.visibility = 'hidden';
 
     // Make a POST request to the server 'myserver/download-pdf' with the URL
     fetch('/download_pdf', {
@@ -159,6 +162,8 @@ y.addEventListener("submit", function(event) {
         x.innerHTML = "Error: Request to server failed. Please try again. Check the URL if there is https:// at the beginning. If not, add it.";
         console.error(error);
       });
+      loadTest.style.display = "none";
+      document.getElementById('refreshbutton').style.display = 'block';
 });
 
 input.addEventListener("change", async function() {
@@ -172,6 +177,9 @@ input.addEventListener("change", async function() {
   loading.innerHTML = "Calculating embeddings...";
   chat.appendChild(loading);
 
+  loadTest.style.display = "none";
+  loadTest.style.marginTop = "0px";
+  loadTest.style.visibility = 'hidden';
   // Make a post request to /process_pdf with the file
   fetch('/process_pdf', {
       method: 'POST',
@@ -207,6 +215,8 @@ input.addEventListener("change", async function() {
   }).catch(error => {
   console.error(error);
   });
+  loadTest.style.display = "none";
+  document.getElementById('refreshbutton').style.display = "block";
 });
 
 loadTest.addEventListener("click", function(event) {
@@ -262,5 +272,13 @@ loadTest.addEventListener("click", function(event) {
         x.innerHTML = "Error: Request to server failed. Please try again. Check the URL if there is https:// at the beginning. If not, add it.";
         console.error(error);
       });
-})
+    document.getElementById('refreshbutton').style.display = "block";
+    })
+
+    document.getElementById('refreshbutton').addEventListener('click', function(){
+      location.reload(true);
+      
+      // x.value = "Enter URL"
+    });  
 });
+
