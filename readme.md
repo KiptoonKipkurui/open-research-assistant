@@ -14,6 +14,12 @@
     <em>Inference engine, answers queries on documents powered by Open-Source Large Language Models</em>
 </p>
 
+[![Tests](https://github.com/KiptoonKipkurui/open-research-assistant/actions/workflows/security-analysis.yml/badge.svg)](https://github.com/KiptoonKipkurui/open-research-assistant/actions/workflows/security-analysis.yml)
+[![Linting](https://github.com/KiptoonKipkurui/open-research-assistant/actions/workflows/pylint.yml/badge.svg)](https://github.com/KiptoonKipkurui/open-research-assistant/actions/workflows/pylint.yml)
+[![GitHub release](https://img.shields.io/github/release/anchore/syft.svg)](https://github.com/KiptoonKipkurui/open-research-assistant/releases/latest)
+[![Python version](https://img.shields.io/badge/python-3.8|3.9|3.10-blue)](https://github.com/KiptoonKipkurui/open-research-assistant/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/KiptoonKipkurui/open-research-assistant/blob/master/LICENSE)
+
 # OPEN-RESEARCH ASSISTANT
 ## Introduction
 Open-Research Assistant is a state of the art inference engine that allows you to interogate textual PDF documents of all nature from scientific to fiction and derive insights from it. It is powered by open-source Large Language Models and uses Retrieval Augmentated Generation to enhance the knowledge base of the LLM and reduce hallucinations that commonly affect LLMs. Its main features are
