@@ -1,6 +1,7 @@
 PYLINT = pylint
 PYLINTFLAGS = -rn
 PYTHONFILES := $(git ls-files *.py)
+folder := ./$(VENV)
 
 # pylint: $(patsubst %.py,%.pylint,$(PYTHONFILES))
 
@@ -41,11 +42,14 @@ up:  ## Run Docker Compose services
 down:  ## Shutdown Docker Compose services
 	docker-compose -f docker-compose.local.yml down
 
-venv: requirements-dev.txt Makefile
-	python3 -m pip install --upgrade pip setuptools wheel
-	python3 -m venv $(VENV)
-	$(PYTHON) -m pip install -r requirements-dev.txt
+venv: requirements.txt Makefile
+	if [ -d $(folder) ]; then \
+		python3 -m pip install --upgrade pip setuptools wheel; \
+		python3 -m venv $(VENV); \
+	fi
+	. $(VENV)/bin/activate;
 
+	
 check-deps:  ## Check new versions and update deps
 	$(PYTHON) -m pur -r requirements-dev.txt -d
 
