@@ -27,7 +27,7 @@ Open-Research Assistant is a state of the art inference engine that allows you t
 * Calculation and storage of Vector embeddings of PDF documents.
 * Configurable Text Chunking according to an LLMS token length
 * Document queries response with source documents in under 2.5 minutes.
-* Support for LLMS with 3B or 7B parameters.  
+* Support for Llama LLMS with 3B or 7B parameters.  
 
 ## Installation Instructions
 ### Prerequisites
@@ -38,8 +38,8 @@ Due to the enoumous size of Large Language Models, this project does not come ba
 The program is python based, and so requires python <= 3.11
 2. **Model** <br> 
 The model can be downloaded from the following endpoint
-  [llama2 7B LLM](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/blob/main/llama-2-7b-chat.ggmlv3.q4_0.bin)
-  from [huggingface](https://huggingface.co). Hugging Face is the hub of everything Machine Learning and AI including to but not limited to being an Open-Source LLM repository.
+  [Ocra-Mini 3B](https://gpt4all.io/models/gguf/orca-mini-3b-gguf2-q4_0.gguf)
+  from [GPT$All](https://gpt4all.io/index.html). GPT4All is a hub of Open-Source LLM models that can run on CPU.
   Once downloaded, the model should be placed in the [models](./models/) directory. This model can then be used for reference
 3. **Redis**<br>
  The application also requires a running redis instance. Redis installation instructions can be found [here](https://redis.io/docs/install/install-redis/)
@@ -71,7 +71,7 @@ Open-Research Assistant can also be installed by cloning the project at [open-re
   source env/bin/activate
   ```
   <li>Install required packages</li>
-  This application utilizes a couple of packages defined in the <a href="./requirements.txt">requirements file</a>. They cann be installed by the following command
+  This application utilizes a couple of packages defined in the <a href="./requirements.txt">requirements file</a>. They can be installed by the following command
 
   ```sh
   pip install -r requirements.txt
@@ -84,6 +84,11 @@ Open-Research Assistant can also be installed by cloning the project at [open-re
   uvicorn main:app
   ```
 </ol> 
+
+## Using Open Research Assistant
+Ask one question at at time waiting until you get a response before initiating the other.
+
+## Troubleshooting
 
 ## Contributing
 The open-research-assistant is free to use and redistribute and thereby being an open-source project, contributions are welcomed. The [contribution guide](./contributing-guide.md) forms the first entry point for anyone willing to make contributions to this project. It documents the steps necessary to configure your development environment to be able to contribute to this project.
