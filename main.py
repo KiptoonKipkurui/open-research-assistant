@@ -10,6 +10,7 @@ import redis
 import uvicorn
 import wget
 import yaml
+import subprocess
 from dotenv import find_dotenv, load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -135,5 +136,24 @@ async def reply(request: Request):
     return {"answer": result.result, "sources": result.sources}
 
 
+def check_redis_status()->bool:
+    """
+    check prerequisites
+    """
+    try:
+        script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'check-redis.sh'))
+        # Run the Bash script
+        subprocess.run([script_path], check=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
+        return False
+
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Call the function to check Redis status
+    if check_redis_status():
+
+        uvicorn.run(app, host="localhost", port=8000)
+    else:
+        print("Redis not started.")
