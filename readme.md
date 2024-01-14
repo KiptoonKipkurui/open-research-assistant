@@ -39,8 +39,8 @@ The program is python based, and so requires python <= 3.11
 2. **Model** <br> 
 The model can be downloaded from the following endpoint
   [Ocra-Mini 3B](https://gpt4all.io/models/gguf/orca-mini-3b-gguf2-q4_0.gguf)
-  from [GPT$All](https://gpt4all.io/index.html). GPT4All is a hub of Open-Source LLM models that can run on CPU.
-  Once downloaded, the model should be placed in the [models](./models/) directory. This model can then be used for reference
+  from [GPT4All](https://gpt4all.io/index.html). GPT4All is a hub of Open-Source LLM models that can run on CPU.
+  Once downloaded, the model should be placed in the [models](./models/) directory. This model can then be used for infererence.
 3. **Redis**<br>
  The application also requires a running redis instance. Redis installation instructions can be found [here](https://redis.io/docs/install/install-redis/)
   To start the redis server the following command can be applied
@@ -86,9 +86,7 @@ Open-Research Assistant can also be installed by cloning the project at [open-re
 </ol> 
 
 ## Using Open Research Assistant
-Ask one question at at time waiting until you get a response before initiating the other.
-
-## Troubleshooting
+Ask one question at at time waiting until you get a response before initiating another other.
 
 ## Contributing
 The open-research-assistant is free to use and redistribute and thereby being an open-source project, contributions are welcomed. The [contribution guide](./contributing-guide.md) forms the first entry point for anyone willing to make contributions to this project. It documents the steps necessary to configure your development environment to be able to contribute to this project.
