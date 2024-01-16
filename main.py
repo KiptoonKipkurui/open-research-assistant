@@ -2,6 +2,7 @@
 MAIN module provides an entry point into the application
 """
 import os
+import time
 import timeit
 from hashlib import md5
 
@@ -11,6 +12,8 @@ import uvicorn
 import wget
 import yaml
 import subprocess
+import redis
+from redis.exceptions import ConnectionError
 from dotenv import find_dotenv, load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -136,22 +139,44 @@ async def reply(request: Request):
     return {"answer": result.result, "sources": result.sources}
 
 
-def check_redis_status()->bool:
+def check_redis_status(host='localhost', port=6379):
     """
-    check prerequisites
+    checks whether redis is running
     """
     try:
-        print("checking for redis server...")
-        script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'check-redis.sh'))
-        # Run the Bash script
-        subprocess.run([script_path], check=True)
+        # Connect to the Redis server
+        redis_client = redis.StrictRedis(host=host, port=port, decode_responses=True)
+        
+        # Try to ping the server
+        redis_client.ping()
+
+        # If ping succeeds, the server is running
         return True
-    except subprocess.CalledProcessError as e:
-        print(f"Error: {e}")
+    except ConnectionError:
+        # If there is a ConnectionError, the server is not running
         return False
 
+# Replace 'localhost' and '6379' with your Redis server's host and port if different
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+
+def start_redis_server():
+    try:
+        # Start Redis server using subprocess
+        subprocess.Popen(["redis-server"])
+        
+        # Sleep for a few seconds to allow the server to start
+        time.sleep(3)
+        
+        print("Redis server started successfully.")
+    except Exception as e:
+        print(f"Error starting Redis server: {e}")
+
+# Call the function to start the Redis server
+start_redis_server()
 
 if __name__ == "__main__":
+    start_redis_server()
     # Call the function to check Redis status
     if check_redis_status():
         port=8000
