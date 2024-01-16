@@ -48,6 +48,7 @@ templates = Jinja2Templates(directory="templates")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+dbqa = setup_dbqa(cfg)
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
@@ -108,7 +109,6 @@ async def reply(request: Request):
     """
     data = await request.json()
     query = data.get("query")
-    dbqa = setup_dbqa(cfg)
 
     query = str(query)
 
@@ -141,6 +141,7 @@ def check_redis_status()->bool:
     check prerequisites
     """
     try:
+        print("checking for redis server...")
         script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'check-redis.sh'))
         # Run the Bash script
         subprocess.run([script_path], check=True)
@@ -153,7 +154,7 @@ def check_redis_status()->bool:
 if __name__ == "__main__":
     # Call the function to check Redis status
     if check_redis_status():
-
-        uvicorn.run(app, host="localhost", port=8000)
+        port=8000
+        uvicorn.run(app, host="localhost", port=port)       
     else:
         print("Redis not started.")
