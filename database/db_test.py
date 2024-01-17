@@ -19,7 +19,7 @@ class DBTest(unittest.TestCase):
         """
         cfg = box.box_from_file("./config/config.yml", "yaml")
         build_db(config=cfg)
-        self.assertTrue(os.path.exists("vectorstore/db_faiss"))
+        self.assertTrue(os.path.exists("./vectorstore/db_faiss"))
 
 
 if __name__ == "__main__":
