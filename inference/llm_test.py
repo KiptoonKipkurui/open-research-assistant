@@ -4,7 +4,6 @@ UNIT tests related to LLMS
 import unittest
 
 import box
-from langchain.llms import CTransformers
 from langchain.llms.fake import FakeListLLM
 
 from .llm import setup_dbqa
