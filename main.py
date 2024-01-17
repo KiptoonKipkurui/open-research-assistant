@@ -81,6 +81,7 @@ async def process_pdf(request: Request):
         print("Already processed pdf")
         return JSONResponse({"key": key})
 
+    db.set(key,body)
     print("Done processing pdf")
     return JSONResponse({"key": key})
 
