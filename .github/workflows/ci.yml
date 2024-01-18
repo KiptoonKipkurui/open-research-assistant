@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest 
     
     steps:
+    - name: Install Redis
+      run: |
+        sudo snap install redis
+        redis-server &  
     - name : Checkout code
       uses : actions/checkout@v4
     - name : Download model
