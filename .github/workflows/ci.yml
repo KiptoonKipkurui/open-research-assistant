@@ -11,8 +11,9 @@ jobs:
       uses : actions/checkout@v4
     - name : Download model
       run: |
+        pwd
         url="https://gpt4all.io/models/gguf/orca-mini-3b-gguf2-q4_0.gguf"
-        curl -o ../models/orca-mini-3b-gguf2-q4_0.gguf "$url"
+        curl -o ./models/orca-mini-3b-gguf2-q4_0.gguf "$url"
         tree
     - name : Install Packages 
       run : pip install -r requirements.txt
