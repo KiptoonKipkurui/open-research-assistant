@@ -1,14 +1,15 @@
 import json
 import os
 import unittest
+from hashlib import md5
+
+import box
 from fakeredis import FakeServer, FakeStrictRedis
 from fastapi.testclient import TestClient
-from hashlib import md5
-from main import app, db
+
 from database import build_db
-import unittest
-from fastapi.testclient import TestClient
-import json
+from main import app, db
+
 
 class TestProcessPDFEndpoint(unittest.TestCase):
     def setUp(self):
@@ -16,7 +17,8 @@ class TestProcessPDFEndpoint(unittest.TestCase):
         self.test_pdf_data = b"Test PDF Data"
         self.fake_server = FakeServer()
         self.fake_redis = FakeStrictRedis(server=self.fake_server)
-        build_db()
+        cfg = box.box_from_file("./config/config.yml", "yaml")
+        build_db(config=cfg)
 
     def tearDown(self):
         # Clean up any files or data created during the tests
@@ -41,7 +43,8 @@ class TestDownloadPDFEndpoint(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
         self.test_url = "https://raft.github.io/raft.pdf"
-        build_db()
+        cfg = box.box_from_file("./config/config.yml", "yaml")
+        build_db(config=cfg)
 
     def tearDown(self):
         # Clean up any files or data created during the tests
@@ -63,7 +66,8 @@ class TestReplyEndpoint(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
         self.test_query = "What is the meaning of life?"
-        build_db()
+        cfg = box.box_from_file("./config/config.yml", "yaml")
+        build_db(config=cfg)
 
     def tearDown(self):
         # Clean up any data or resources created during the tests
