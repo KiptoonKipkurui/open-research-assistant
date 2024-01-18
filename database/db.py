@@ -19,6 +19,7 @@ def build_db(config: box.Box):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=config.CHUNK_SIZE, chunk_overlap=config.CHUNK_OVERLAP
     )
+    print(f"availabledocuments: {len(documents)}")
     texts = text_splitter.split_documents(documents)
 
     embeddings = HuggingFaceEmbeddings(
