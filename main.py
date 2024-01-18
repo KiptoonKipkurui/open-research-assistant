@@ -70,7 +70,7 @@ async def process_pdf(request: Request):
     key = md5(body).hexdigest()
     print(key)
 
-    file_name = f"./data/{key}.pdf"
+    file_name = f"./data/data-{key}.pdf"
     if not os.path.exists(file_name):
         with open(file_name, "wb") as file:
             file.write(body)
@@ -96,7 +96,7 @@ async def download_pdf(request: Request):
 
     if db.get(key) is not None:
         return JSONResponse({"key": key})
-    file_name = f"./data/{key}.pdf"
+    file_name = f"./data/data-{key}.pdf"
     if not os.path.exists(file_name):
         wget.download(url, file_name)
         build_db(cfg)
