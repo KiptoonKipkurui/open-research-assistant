@@ -38,8 +38,8 @@ class TestLLMs(unittest.TestCase):
 
         dbqa=setup_dbqa(cfg,llm)
 
-        response = dbqa({"query": "What is an LLM"})
-        print(response)
+        answer = dbqa({"query": "What is an LLM"})
+        self.assertIsNotNone(answer)
 
 if __name__ == "__main__":
     unittest.main()
