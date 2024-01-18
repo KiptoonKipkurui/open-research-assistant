@@ -2,6 +2,7 @@
 MAIN module provides an entry point into the application
 """
 import os
+import subprocess
 import time
 import timeit
 from hashlib import md5
@@ -11,15 +12,13 @@ import redis
 import uvicorn
 import wget
 import yaml
-import subprocess
-import redis
-from redis.exceptions import ConnectionError
 from dotenv import find_dotenv, load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from redis.exceptions import ConnectionError
 
 from database import build_db
 from inference import LLmResponse, LLMSource, setup_dbqa
