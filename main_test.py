@@ -6,6 +6,7 @@ from hashlib import md5
 import box
 from fakeredis import FakeServer, FakeStrictRedis
 from fastapi.testclient import TestClient
+from fastapi import Request
 
 from database import build_db
 from main import app, db
@@ -14,12 +15,11 @@ from main import app, db
 class TestProcessPDFEndpoint(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
-        self.test_pdf_data = b"Test PDF Data"
+        self.test_pdf_data = read_file_to_bytes('./data/data-772b33c6e2794b2fe651cfc48c77c472.pdf')
         self.fake_server = FakeServer()
         self.fake_redis = FakeStrictRedis(server=self.fake_server)
         cfg = box.box_from_file("./config/config.yml", "yaml")
         build_db(config=cfg)
-
     def tearDown(self):
         # Clean up any files or data created during the tests
         # Stop the fake Redis server
@@ -43,15 +43,15 @@ class TestDownloadPDFEndpoint(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
         self.test_url = "https://raft.github.io/raft.pdf"
+
         cfg = box.box_from_file("./config/config.yml", "yaml")
         build_db(config=cfg)
 
     def tearDown(self):
         # Clean up any files or data created during the tests
         key = md5(str(self.test_url).encode("utf-8")).hexdigest()
-        file_name = f"./data/{key}.pdf"
-        if os.path.exists(file_name):
-            os.remove(file_name)
+        file_name = f"./data/data-{key}.pdf"
+       
         if db.get(key)is not None:
             db.delete(key)
 
@@ -65,6 +65,7 @@ class TestDownloadPDFEndpoint(unittest.TestCase):
 class TestReplyEndpoint(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
+        self.test_pdf_data = read_file_to_bytes('./data/data-772b33c6e2794b2fe651cfc48c77c472.pdf')
         self.test_query = "What is the meaning of life?"
         cfg = box.box_from_file("./config/config.yml", "yaml")
         build_db(config=cfg)
@@ -97,6 +98,12 @@ class TestReplyEndpoint(unittest.TestCase):
             self.assertIn("text", source)
             self.assertIn("page", source)
 
+
+
+def read_file_to_bytes(file_path):
+    with open(file_path, "rb") as file:
+        file_bytes = file.read()
+    return file_bytes
 
 if __name__ == '__main__':
     unittest.main()
