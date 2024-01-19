@@ -93,6 +93,11 @@ Helpful information will be displayed in the chat window to aid when to type.
 The User Experience is not yet fully fleshed out and so it may allow one to type in multiple questions at a time but it is not yet built to handle such. 
 <br>
 You can check if you meet the primary requirements by running this [check](./check_prerequisites.sh)
+```sh
+chmod +x check_prerequisites.sh
+
+./check_prerequisites.sh
+```
 
 ## Contributing
 The open-research-assistant is free to use and redistribute and thereby being an open-source project, contributions are welcomed. The [contribution guide](./contributing-guide.md) forms the first entry point for anyone willing to make contributions to this project. It documents the steps necessary to configure your development environment to be able to contribute to this project.
