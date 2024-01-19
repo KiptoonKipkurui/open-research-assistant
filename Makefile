@@ -1,7 +1,7 @@
 PYLINT = pylint
 PYLINTFLAGS = -rn
 PYTHONFILES := $(git ls-files *.py)
-folder := ./$(VENV)
+# folder := ./$(VENV)
 
 # pylint: $(patsubst %.py,%.pylint,$(PYTHONFILES))
 
@@ -24,13 +24,13 @@ list:
 
 .PHONY: up down venv check-deps update-deps install-deps isort black mypy flake8 bandit lint test migrate serve
 
-ifneq (,$(wildcard ./env))
-    include env
-    export
-endif
+# ifneq (,$(wildcard ./env))
+#     include env
+#     export
+# endif
 
-VENV=env
-PYTHON=$(VENV)/bin/python3
+# VENV=env
+# PYTHON=$(VENV)/bin/python3
 
 cmd-exists-%:
 	@hash $(*) > /dev/null 2>&1 || \
@@ -42,12 +42,12 @@ up:  ## Run Docker Compose services
 down:  ## Shutdown Docker Compose services
 	docker-compose -f docker-compose.local.yml down
 
-venv: requirements.txt Makefile
-	if [ -d $(folder) ]; then \
-		python3 -m pip install --upgrade pip setuptools wheel; \
-		python3 -m venv $(VENV); \
-	fi
-	. $(VENV)/bin/activate;
+# venv: requirements.txt Makefile
+# 	if [ -d $(folder) ]; then \
+# 		python3 -m pip install --upgrade pip setuptools wheel; \
+# 		python3 -m venv $(VENV); \
+# 	fi
+# 	. $(VENV)/bin/activate;
 
 	
 check-deps:  ## Check new versions and update deps
