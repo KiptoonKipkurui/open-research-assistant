@@ -49,7 +49,7 @@ db = redis.StrictRedis(host="localhost", port=6379, db=0)
 templates = Jinja2Templates(directory="templates")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
+build_db(cfg)
 dbqa = setup_dbqa(cfg)
 
 @app.get("/", response_class=HTMLResponse)

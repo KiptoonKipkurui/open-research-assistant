@@ -76,6 +76,15 @@ Open-Research Assistant can also be installed by cloning the project at [open-re
   ```sh
   pip install -r requirements.txt
   ```
+
+  <li>Ocra Mini 3B model</li>
+
+  Ensure that the   [Ocra-Mini 3B](https://gpt4all.io/models/gguf/orca-mini-3b-gguf2-q4_0.gguf) is donwloaded and loaded in the [Models](./models/) folder
+
+  <li>Redis</li>
+  
+  Ensure Redis is running at the default port 6379
+
   <li>Run the application</li>
 
   Finally, run the application using `uvicorn`
