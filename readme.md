@@ -82,7 +82,7 @@ Open-Research Assistant can also be installed by cloning the project at [open-re
   Ensure that the   [Ocra-Mini 3B](https://gpt4all.io/models/gguf/orca-mini-3b-gguf2-q4_0.gguf) is donwloaded and loaded in the [Models](./models/) folder
 
   <li>Redis</li>
-  
+
   Ensure Redis is running at the default port 6379
 
   <li>Run the application</li>
@@ -100,6 +100,7 @@ Helpful information will be displayed in the chat window to aid when to type.
 
 <em>NOTE</em>
 The User Experience is not yet fully fleshed out and so it may allow one to type in multiple questions at a time but it is not yet built to handle such. 
+The packages also take time to install, give it time.
 <br>
 You can check if you meet the primary requirements by running this [check](./check_prerequisites.sh)
 ```sh
