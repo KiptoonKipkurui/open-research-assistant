@@ -104,3 +104,9 @@ The open-research-assistant is free to use and redistribute and thereby being an
 
 ## Issues
 Any issues discovered for this project should be opened on [GitHub](https://github.com/KiptoonKipkurui/open-research-assistant/issues) and shall be addressed by a maintainer.
+
+## Continuous Intgegration and Testing
+The project has multiple checks and balances to ensure the accuracy and the security of the application. Tests range from unit tests, static code analysis and linting tests and can be viewed from the following 
+- [Unit Tests](https://github.com/KiptoonKipkurui/open-research-assistant/actions/workflows/ci.yml)
+- [Static Code Analysis Tests](https://github.com/KiptoonKipkurui/open-research-assistant/actions/workflows/security-analysis.yml)
+- [Linting Tests](https://github.com/KiptoonKipkurui/open-research-assistant/actions/workflows/pylint.yml)
