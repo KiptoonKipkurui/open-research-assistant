@@ -53,7 +53,7 @@ multidict==6.0.5
 mypy-extensions==1.0.0
 nest-asyncio==1.6.0
 networkx==3.3
-nltk==3.8.1
+nltk==3.9.3
 numexpr==2.10.1
 numpy==2.0.0
 nvidia-cublas-cu12==12.5.2.13
